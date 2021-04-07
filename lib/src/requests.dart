@@ -97,7 +97,7 @@ class Requests {
     return cookies;
   }
 
-  static FutureOr<Map> _constructRequestHeaders(
+  static FutureOr<Map<String, String>?> _constructRequestHeaders(
       String hostname, Map<String, String>? customHeaders) async {
     var cookies = await getStoredCookies(hostname);
     var cookie = cookies.keys.map((key) => '$key=${cookies[key]}').join('; ');
@@ -141,7 +141,7 @@ class Requests {
     return '${uri.host}:${uri.port}';
   }
 
-  static Future<Response> _handleHttpResponse(
+  static FutureOr<Response> _handleHttpResponse(
       String hostname, http.Response rawResponse, bool persistCookies) async {
     if (persistCookies) {
       var responseCookies = extractResponseCookies(rawResponse.headers);
