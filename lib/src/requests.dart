@@ -97,7 +97,7 @@ class Requests {
     return cookies;
   }
 
-  static Future<Map> _constructRequestHeaders(
+  static FutureOr<Map> _constructRequestHeaders(
       String hostname, Map<String, String>? customHeaders) async {
     var cookies = await getStoredCookies(hostname);
     var cookie = cookies.keys.map((key) => '$key=${cookies[key]}').join('; ');
@@ -109,7 +109,7 @@ class Requests {
     return requestHeaders;
   }
 
-  static Future<Map<String, String>> getStoredCookies(String hostname) async {
+  static FutureOr<Map<String, String>> getStoredCookies(String hostname) async {
     try {
       var hostnameHash = Common.hashStringSHA256(hostname);
       var cookiesJson = await Common.storageGet('cookies-$hostnameHash');
@@ -161,7 +161,7 @@ class Requests {
     return response;
   }
 
-  static Future<Response> head(String url,
+  static FutureOr<Response> head(String url,
       {Map<String, String>? headers,
       Map<String, dynamic>? queryParameters,
       int? port,
@@ -179,7 +179,7 @@ class Requests {
         verify: verify);
   }
 
-  static Future<Response> get(String url,
+  static FutureOr<Response> get(String url,
       {Map<String, String>? headers,
       Map<String, dynamic>? queryParameters,
       int? port,
@@ -201,7 +201,7 @@ class Requests {
         verify: verify);
   }
 
-  static Future<Response> patch(String url,
+  static FutureOr<Response> patch(String url,
       {Map<String, String>? headers,
       int? port,
       dynamic json,
@@ -223,7 +223,7 @@ class Requests {
         verify: verify);
   }
 
-  static Future<Response> delete(String url,
+  static FutureOr<Response> delete(String url,
       {Map<String, String>? headers,
       dynamic json,
       dynamic body,
@@ -245,7 +245,7 @@ class Requests {
         verify: verify);
   }
 
-  static Future<Response> post(String url,
+  static FutureOr<Response> post(String url,
       {dynamic json,
       int? port,
       dynamic body,
@@ -267,7 +267,7 @@ class Requests {
         verify: verify);
   }
 
-  static Future<Response> put(
+  static FutureOr<Response> put(
     String url, {
     int? port,
     dynamic json,
@@ -294,7 +294,7 @@ class Requests {
     );
   }
 
-  static Future<Response> _httpRequest(HttpMethod method, String url,
+  static FutureOr<Response> _httpRequest(HttpMethod method, String url,
       {dynamic json,
       dynamic body,
       RequestBodyEncoding bodyEncoding = DEFAULT_BODY_ENCODING,
