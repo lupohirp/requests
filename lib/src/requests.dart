@@ -323,7 +323,8 @@ class Requests {
     }
 
     var hostname = getHostname(url);
-    headers = await (_constructRequestHeaders(hostname, headers) as FutureOr<Map<String, String>?>);
+    headers = await (_constructRequestHeaders(hostname, headers)
+        as FutureOr<Map<String, String>?>);
     String? requestBody;
 
     if (body != null && json != null) {
@@ -407,7 +408,8 @@ class Requests {
     var response = await future.timeout(Duration(seconds: timeoutSeconds));
 
     if (response is http.StreamedResponse) {
-      response = await (http.Response.fromStream(response) as FutureOr<StreamedResponse>);
+      response = await (http.Response.fromStream(response)
+          as FutureOr<http.StreamedResponse>);
     }
 
     return await _handleHttpResponse(hostname, response, persistCookies);
