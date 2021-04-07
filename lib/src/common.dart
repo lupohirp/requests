@@ -1,7 +1,8 @@
 import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:hex/hex.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:crypto/crypto.dart';
 
 class Common {
   const Common();
@@ -17,7 +18,7 @@ class Common {
   }
 
   static bool equalsIgnoreCase(String? string1, String string2) {
-    return string1?.toLowerCase() == string2?.toLowerCase();
+    return string1?.toLowerCase() == string2.toLowerCase();
   }
 
   static String toJson(dynamic object) {
