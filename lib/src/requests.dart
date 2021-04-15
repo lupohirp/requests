@@ -385,14 +385,7 @@ class Requests {
         future = client.put(uri, body: requestBody, headers: headers);
         break;
       case HttpMethod.DELETE:
-        final request = http.Request('DELETE', uri);
-        request.headers.addAll(headers!);
-
-        if (requestBody != null) {
-          request.body = requestBody;
-        }
-
-        future = client.send(request);
+        future = client.delete(uri,body: requestBody,headers: headers);
         break;
       case HttpMethod.POST:
         future = client.post(uri, body: requestBody, headers: headers);
